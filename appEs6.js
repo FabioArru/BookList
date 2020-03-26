@@ -6,6 +6,8 @@ const UIauthor = document.querySelector('#author');
 const UIibn = document.querySelector('#ibn');
 const UItdBody = document.querySelector('#book-list')
 const UIcontainer = document.querySelector('.container');
+ //create a div to display errror and sucess messages
+ let div = document.createElement('div');
 
 
 class Book{
@@ -15,16 +17,3 @@ class Book{
       this.ibn = ibn;
   }
 }
-
-loadEvents();
-
-
-function loadEvents(){
-
-  UIform.addEventListener('submit', BookList);
-
-}
-
-//create a div to display errror and sucess messages
-let div = document.createElement('div');
-
