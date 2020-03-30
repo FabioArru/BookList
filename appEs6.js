@@ -6,6 +6,7 @@ const UIauthor = document.querySelector('#author');
 const UIibn = document.querySelector('#ibn');
 const UItdBody = document.querySelector('#book-list')
 const UIcontainer = document.querySelector('.container');
+
  //create a div to display errror and sucess messages
  let div = document.createElement('div');
 
@@ -26,23 +27,34 @@ function loadEvents(){
   UIform.addEventListener('submit', checkValues);
   window.addEventListener('load', displayStoredBooks);
   UItdBody.addEventListener('click', deleteBook);
+
+ 
+
 }
 
 
 function checkValues(e){
   if (UItitle.value === "" || UItitle.value === " " || UIauthor.value === "" || UIauthor.value === " " || UIibn.value === "" || UIibn.value === " "){
     
-    setInterval(displayMessage("error"),2000);
+    setInterval(displayMessage("error", "Check insert values"),2000);
     setInterval(resetValues,2000);
     
   }else{
     let book = new Book(UItitle.value, UIauthor.value, UIibn.value);
+
+    if(localStorage.getItem('books') === null){
     addBook(book);
     storeBook(book);
-    setInterval(displayMessage("success"),2000)
-    setInterval(resetValues,2000);
-  
+    setInterval(displayMessage("success", "Book correctly added"),2000)
+    
+    
+  }else{
+    checkBooks(book);
+  }
+    
+    
 }
+setTimeout(resetValues, 2000);
 e.preventDefault();
 }
 
@@ -161,13 +173,39 @@ function resetValues(){
 
 //function to display an error or success message 
 
-function displayMessage(state){
+function displayMessage(state, message){
   UIcontainer.insertBefore(div, UIform);
   div.classList = state;
-  div.innerText = "Book correctly added";
+  div.innerText = message;
 
   setTimeout(function(){
     div.style.display = 'none';
 
   },2000)
 }
+
+
+
+ function checkBooks(newBook){
+  storedBooks = JSON.parse(localStorage.getItem('books'));
+
+    storedBooks.forEach(function(element){
+
+      if(element.title == newBook.title && element.author === newBook.author && element.ibn === newBook.ibn){
+        setInterval(displayMessage('error', "Book already added"), 2000);
+        setTimeout(displayMessage, 2000);
+        
+        
+      }else{
+        addBook(newBook);
+        storeBook(newBook);
+        
+        
+      }
+  
+    })
+
+  
+
+
+} 
