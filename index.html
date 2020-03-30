@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <title>Book List </title>
+  <style>
+    .success, .error{
+      color: #fff;
+      padding: 5px;
+      margin: 10px 0 10px 0;
+      font-size: 18px; 
+    }
+    .success{
+      background-color: rgb(61, 241, 61);
+    }
+    .error{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add Book</h1>
+    <form action="" id="book-form">
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title" class="u-full-width">
+      </div>
+      <div>
+        <label for="title">Author</label>
+        <input type="text" id="author" class="u-full-width">
+      </div>
+      <div>
+        <label for="title">IBN</label>
+        <input type="text" id="ibn" class="u-full-width">
+      </div>
+      <div>
+        <input type="submit" value="Add book" class="u-full-width" id="add-book">
+      </div>
+    </div>
+  </form>
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>Author</td>
+        <td>ISBN</td>
+        <td>Delete</td>
+      </tr>
+    </thead>
+    <tbody id="book-list" class="book-list">
+
+    </tbody>
+  </table>
+
+  <script src="appEs6.js"></script>
+</body>
+</html>
